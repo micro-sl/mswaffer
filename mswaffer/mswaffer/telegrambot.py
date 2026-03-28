@@ -42,10 +42,10 @@ async def send_direct_message(messageid):
         # استخدمنا الرموز التعبيرية (Emojis) لتحسين الشكل البصري
         caption_text = (
             f"📦 *{short_name}*\n"
-            f"--- --- --- --- ---\n"
-            f"💰 *السعر:* '{formatted_price_before} ' \n"
-            f"📉 *الخصم:* '{discount_percentage}%' \n"
-            f"🔥 *السعر بعد الخصم:* '{formatted_price_after} ' \n"
+            f"-----------------------\n"
+            f"💰 *السعر:* {formatted_price_before}  \n"
+            f"📉 *الخصم:* {discount_percentage}% \n"
+            f"🔥 *السعر بعد الخصم:* {formatted_price_after}  \n"
         )        
 
 
