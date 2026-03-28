@@ -1,0 +1,111 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "format:TLGUSR-{##########}",
+ "creation": "2026-03-26 16:33:34.006269",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "first_name",
+  "last_name",
+  "system_user",
+  "user_language",
+  "column_break_vump",
+  "user_email",
+  "user_mobile",
+  "user_gender",
+  "telegram_id",
+  "is_enabled",
+  "last_sent_time"
+ ],
+ "fields": [
+  {
+   "fieldname": "telegram_id",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Telegram ID"
+  },
+  {
+   "fieldname": "first_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "First Name"
+  },
+  {
+   "fieldname": "last_name",
+   "fieldtype": "Data",
+   "label": "Last Name"
+  },
+  {
+   "fieldname": "system_user",
+   "fieldtype": "Link",
+   "label": "User",
+   "options": "User"
+  },
+  {
+   "fieldname": "column_break_vump",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "user_language",
+   "fieldtype": "Link",
+   "label": "User Language",
+   "options": "Language"
+  },
+  {
+   "fieldname": "user_email",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Email"
+  },
+  {
+   "fieldname": "user_mobile",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Mobile"
+  },
+  {
+   "fieldname": "user_gender",
+   "fieldtype": "Data",
+   "label": "Gender"
+  },
+  {
+   "default": "1",
+   "fieldname": "is_enabled",
+   "fieldtype": "Check",
+   "label": "Is Enabled"
+  },
+  {
+   "fieldname": "last_sent_time",
+   "fieldtype": "Datetime",
+   "label": "last sent time"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-03-28 09:56:39.433718",
+ "modified_by": "Administrator",
+ "module": "Mswaffer",
+ "name": "MsUsers",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

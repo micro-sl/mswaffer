@@ -1,0 +1,65 @@
+{
+ "actions": [],
+ "creation": "2026-03-27 07:06:19.344460",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "msuser",
+  "offer_id",
+  "mscreateddate",
+  "is_send"
+ ],
+ "fields": [
+  {
+   "fieldname": "msuser",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "msuser",
+   "options": "MsUsers"
+  },
+  {
+   "fieldname": "offer_id",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "offer_id",
+   "options": "VendorProduct"
+  },
+  {
+   "fieldname": "mscreateddate",
+   "fieldtype": "Datetime",
+   "label": "MSCreatedDate"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_send",
+   "fieldtype": "Check",
+   "label": "Is Send"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-03-27 09:59:14.889162",
+ "modified_by": "Administrator",
+ "module": "Mswaffer",
+ "name": "MsOfferNotifications",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

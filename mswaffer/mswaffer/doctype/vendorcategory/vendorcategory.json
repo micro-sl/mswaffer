@@ -1,0 +1,64 @@
+{
+ "actions": [],
+ "autoname": "format:VCAT-{#####}",
+ "creation": "2026-03-24 12:45:18.258522",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "category_name",
+  "vendor",
+  "main_category"
+ ],
+ "fields": [
+  {
+   "fieldname": "category_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Name",
+   "reqd": 1
+  },
+  {
+   "fieldname": "vendor",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Vendor",
+   "options": "Vendors",
+   "reqd": 1
+  },
+  {
+   "fieldname": "main_category",
+   "fieldtype": "Link",
+   "label": "Main Category",
+   "options": "MsMainCategory",
+   "reqd": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-03-26 07:04:42.458342",
+ "modified_by": "Administrator",
+ "module": "Mswaffer",
+ "name": "VendorCategory",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "show_title_field_in_link": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "category_name",
+ "translated_doctype": 1
+}

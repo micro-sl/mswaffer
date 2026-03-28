@@ -1,0 +1,190 @@
+{
+ "actions": [],
+ "autoname": "autoincrement",
+ "creation": "2026-03-24 08:57:37.447721",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "vendorid",
+  "product_name",
+  "product_description",
+  "vendor_category",
+  "msmaincategory",
+  "model_name",
+  "product_barcode",
+  "linkurl",
+  "main_product_image",
+  "column_break_znpb",
+  "original_price",
+  "current_price",
+  "discount_amount",
+  "discount_percentage",
+  "currency",
+  "asin",
+  "image_url",
+  "full_image_url",
+  "lastupdatedate",
+  "is_updated",
+  "has_issue",
+  "ready_to_publish"
+ ],
+ "fields": [
+  {
+   "fieldname": "vendorid",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "VendorID",
+   "options": "Vendors",
+   "reqd": 1
+  },
+  {
+   "fieldname": "original_price",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Original Price"
+  },
+  {
+   "fieldname": "current_price",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Current Price"
+  },
+  {
+   "fieldname": "column_break_znpb",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "product_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Product Name",
+   "length": 255,
+   "reqd": 1
+  },
+  {
+   "fieldname": "product_description",
+   "fieldtype": "Small Text",
+   "label": "Product Description"
+  },
+  {
+   "fieldname": "vendor_category",
+   "fieldtype": "Link",
+   "label": "Vendor Category",
+   "options": "VendorCategory"
+  },
+  {
+   "fetch_from": "vendor_category.main_category",
+   "fieldname": "msmaincategory",
+   "fieldtype": "Link",
+   "label": "Main Category",
+   "options": "MsMainCategory"
+  },
+  {
+   "fieldname": "currency",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Currency",
+   "options": "Currency"
+  },
+  {
+   "fieldname": "asin",
+   "fieldtype": "Data",
+   "label": "ASIN"
+  },
+  {
+   "fieldname": "image_url",
+   "fieldtype": "Small Text",
+   "label": "image_url"
+  },
+  {
+   "fieldname": "model_name",
+   "fieldtype": "Data",
+   "label": "Model Name"
+  },
+  {
+   "fieldname": "lastupdatedate",
+   "fieldtype": "Datetime",
+   "label": "LastUpdateDate"
+  },
+  {
+   "fieldname": "linkurl",
+   "fieldtype": "Small Text",
+   "label": "LinkURL",
+   "reqd": 1
+  },
+  {
+   "fieldname": "discount_amount",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Discount Amount"
+  },
+  {
+   "fieldname": "product_barcode",
+   "fieldtype": "Data",
+   "label": "Product Barcode"
+  },
+  {
+   "fieldname": "discount_percentage",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Discount Percentage"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_updated",
+   "fieldtype": "Check",
+   "label": "Is Updated"
+  },
+  {
+   "fieldname": "full_image_url",
+   "fieldtype": "Small Text",
+   "label": "full_image_url"
+  },
+  {
+   "fieldname": "main_product_image",
+   "fieldtype": "Attach Image",
+   "hidden": 1,
+   "label": "Main Product Image"
+  },
+  {
+   "default": "0",
+   "fieldname": "has_issue",
+   "fieldtype": "Check",
+   "label": "Has Issue"
+  },
+  {
+   "default": "0",
+   "fieldname": "ready_to_publish",
+   "fieldtype": "Check",
+   "label": "Ready to publish"
+  }
+ ],
+ "image_field": "main_product_image",
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-03-25 20:46:54.000236",
+ "modified_by": "Administrator",
+ "module": "Mswaffer",
+ "name": "VendorProduct",
+ "naming_rule": "Autoincrement",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

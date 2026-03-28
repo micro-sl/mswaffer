@@ -5,6 +5,9 @@ app_description = "."
 app_email = "m@micro-sl.com"
 app_license = "mit"
 
+
+after_migrate = "mswaffer.mswaffer.utils.create_unique_constraints"
+
 # Apps
 # ------------------
 
@@ -147,6 +150,15 @@ app_license = "mit"
 
 # Scheduled Tasks
 # ---------------
+
+scheduler_events = {
+    "all": [
+ 		"mswaffer.mswaffer.telegrambot.process_offers"
+ 	],
+    "hourly": [
+        "mswaffer.mswaffer.utils.map_offers_to_users_hourly"
+    ]
+}
 
 # scheduler_events = {
 # 	"all": [
