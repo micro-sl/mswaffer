@@ -153,7 +153,8 @@ after_migrate = "mswaffer.mswaffer.utils.create_unique_constraints"
 
 scheduler_events = {
     "all": [
- 		"mswaffer.mswaffer.telegrambot.process_offers"
+ 		"mswaffer.mswaffer.telegrambot.process_offers",
+        "mswaffer.mswaffer.utils.map_offers_to_users_hourly"
  	],
     "hourly": [
         "mswaffer.mswaffer.utils.map_offers_to_users_hourly"
