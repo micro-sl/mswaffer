@@ -32,11 +32,11 @@ async def send_direct_message(messageid):
         product_name= str(product_doc.product_name )
         product_price= str(product_doc.original_price )
         current_price= str(product_doc.current_price )
-        formatted_price_after = "{:,.0f}".format(current_price)
-        formatted_price_before = "{:,.0f}".format(product_price)
+        formatted_price_after = "{:,.0f}".format(float(current_price))
+        formatted_price_before = "{:,.0f}".format(float(product_price))
         discount_percentage= str(int(round(int(product_doc.discount_percentage))))
         # 1. معالجة اسم المنتج (أول 30 حرف فقط) مع إضافة نقاط إذا كان أطول
-        short_name = (product_name[:27] + '...') if len(product_name) > 30 else product_name
+        short_name = (product_name[:50] + '...') if len(product_name) > 50 else product_name
 
         # 2. تجهيز نص الوصف (Caption) بتنسيق Markdown متناسق
         # استخدمنا الرموز التعبيرية (Emojis) لتحسين الشكل البصري
