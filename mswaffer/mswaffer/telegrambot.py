@@ -30,13 +30,29 @@ async def send_direct_message(messageid):
         url= str(product_doc.linkurl)
         photo= str(product_doc.full_image_url )
         product_name= str(product_doc.product_name )
+        product_price= str(product_doc.original_price )
+        current_price= str(product_doc.current_price )
+        discount_percentage= str(product_doc.discount_percentage)
+        # 1. معالجة اسم المنتج (أول 30 حرف فقط) مع إضافة نقاط إذا كان أطول
+        short_name = (product_name[:27] + '...') if len(product_name) > 30 else product_name
+
+        # 2. تجهيز نص الوصف (Caption) بتنسيق Markdown متناسق
+        # استخدمنا الرموز التعبيرية (Emojis) لتحسين الشكل البصري
+        caption_text = (
+            f"📦 *{short_name}*\n"
+            f"--- --- --- --- ---\n"
+            f"💰 *السعر:* '{product_price} ' \n"
+            f"📉 *الخصم:* '{discount_percentage}%' \n"
+            f"🔥 *السعر بعد الخصم:* '{current_price} ' \n"
+        )        
+
 
     # إنشاء كائن البوت
         bot = Bot(token=TOKEN)
         
         # تحضير الأزرار
         keyboard = [
-            [InlineKeyboardButton("شراء الآن 🛒", url=url)],
+            [InlineKeyboardButton("معاينة  🛒", url=url)],
             [InlineKeyboardButton("مشاركة 🔗", switch_inline_query="شوف المنتج ده!")],
             [InlineKeyboardButton("غير مهتم ❌", callback_data="not_interested")]
         ]
@@ -47,7 +63,7 @@ async def send_direct_message(messageid):
             await bot.send_photo(
                 chat_id=USER_CHAT_ID,
                 photo=photo,  # صورة عشوائية للتجربة
-                caption=product_name,
+                caption=caption_text,
                 parse_mode="Markdown",
                 reply_markup=reply_markup
             )
