@@ -26,26 +26,68 @@ async def send_direct_message(messageid):
 
 
         product_doc = frappe.get_doc('VendorProduct', str(offer["offer_id"]))
-        print ("=======",str(product_doc.linkurl))
-        url= str(product_doc.linkurl)
+        print ("=======",str(product_doc.msmaincategory))
+        product_cat = frappe.get_doc('MsMainCategory', str(product_doc.msmaincategory))
+        product_vendor = frappe.get_doc('Vendors', str(product_doc.vendorid))
+        product_cat_name= str(product_cat.category_name)
+        
         photo= str(product_doc.full_image_url )
         product_name= str(product_doc.product_name )
         product_price= str(product_doc.original_price )
         current_price= str(product_doc.current_price )
+        currency= str(product_doc.currency )
         formatted_price_after = "{:,.0f}".format(float(current_price))
         formatted_price_before = "{:,.0f}".format(float(product_price))
         discount_percentage= str(int(round(int(product_doc.discount_percentage))))
         # 1. معالجة اسم المنتج (أول 30 حرف فقط) مع إضافة نقاط إذا كان أطول
-        short_name = (product_name[:27] + '...') if len(product_name) > 30 else product_name
+        short_name = (product_name[:47] + '...') if len(product_name) > 50 else product_name
+
+        url= str(product_doc.linkurl)
+        #https://www.amazon.com/dp/{code}?aff_id={id}
+        context = {
+                    "asin": product_doc.asin,  # استبدال {code} بـ ASIN
+                    "model_name": product_doc.model_name,           # استبدال {id} بـ ID المنتج في نظامك
+                    "vendor_id": product_doc.vendor_id,           # استبدال {id} بـ ID المنتج في نظامك
+                    "product_barcode": product_doc.product_barcode # مثال لإضافة أي حقل آخر
+                        }
+        if product_vendor.product_base_url:
+            import re
+            # هذه الخطوة تجعل الكود ديناميكي تماماً
+            placeholders = re.findall(r'{(.*?)}', product_vendor.product_base_url)
+            
+            # 3. تجهيز القاموس بالقيم الموجودة فقط
+            context = {}
+            product_data = product_doc.as_dict()
+            no_of_tags = 0
+            
+            for tag in placeholders:
+                # التأكد أن الحقل موجود في الـ DocType وله قيمة
+                if tag in product_data and product_data.get(tag):
+                    context[tag] = product_data.get(tag)
+                    no_of_tags += 1
+                    url = product_vendor.product_base_url.format(**context)
+                else:
+                    url= str(product_doc.linkurl)
+                    # إذا كان الحقل مفقوداً أو فارغاً، يمكنك إما وضع قيمة افتراضية 
+                    # أو إيقاف العملية وإظهار رسالة خطأ
+                    print(f"تنبيه: الحقل '{tag}' المستخدم في الرابط فارغ في منتج {product_doc.name}")
+            
+            if no_of_tags>0:
+                url = product_vendor.product_base_url.format(**context)
+            else:
+                url= str(product_doc.linkurl)   
+            
+
 
         # 2. تجهيز نص الوصف (Caption) بتنسيق Markdown متناسق
         # استخدمنا الرموز التعبيرية (Emojis) لتحسين الشكل البصري
         caption_text = (
             f"📦 *{short_name}*\n"
-            f"-----------------------\n"
-            f"💰 *السعر:* {formatted_price_before}  \n"
+            #f"-----------------------\n"
+            f"💰 *السعر:* {formatted_price_before} {currency} \n"
             f"📉 *الخصم:* {discount_percentage}% \n"
-            f"🔥 *السعر بعد الخصم:* {formatted_price_after}  \n"
+            f"🔥 *السعر بعد الخصم:* {formatted_price_after} {currency} \n"
+            f" * الفئة :* {product_cat_name}  \n"
         )        
 
 

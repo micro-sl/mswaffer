@@ -10,6 +10,7 @@
   "vendor_name",
   "base_url",
   "offers_base_url",
+  "product_base_url",
   "vendor_country"
  ],
  "fields": [
@@ -45,11 +46,16 @@
    "fieldtype": "Data",
    "label": "Offers Base URL",
    "options": "URL"
+  },
+  {
+   "fieldname": "product_base_url",
+   "fieldtype": "Data",
+   "label": "Product Base URL"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-03-25 07:55:04.832087",
+ "modified": "2026-03-30 07:02:22.674340",
  "modified_by": "Administrator",
  "module": "Mswaffer",
  "name": "Vendors",

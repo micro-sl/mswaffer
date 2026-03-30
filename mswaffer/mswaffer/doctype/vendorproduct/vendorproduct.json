@@ -9,6 +9,7 @@
   "product_name",
   "product_description",
   "vendor_category",
+  "vendor_id",
   "msmaincategory",
   "model_name",
   "product_barcode",
@@ -159,12 +160,17 @@
    "fieldname": "ready_to_publish",
    "fieldtype": "Check",
    "label": "Ready to publish"
+  },
+  {
+   "fieldname": "vendor_id",
+   "fieldtype": "Data",
+   "label": "Vendor ID"
   }
  ],
  "image_field": "main_product_image",
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-03-25 20:46:54.000236",
+ "modified": "2026-03-30 07:15:49.881995",
  "modified_by": "Administrator",
  "module": "Mswaffer",
  "name": "VendorProduct",
