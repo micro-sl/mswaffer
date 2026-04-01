@@ -88,7 +88,7 @@ async def send_direct_message(messageid):
                     f"💰 *السعر:* {formatted_price_before} {currency}" if formatted_price_before else None,
                     f"📉 *الخصم:* {discount_percentage}%" if discount_percentage else None,
                     f"🔥 *السعر بعد الخصم:* {formatted_price_after} {currency}" if formatted_price_after else None,
-                    f"⭐ *تقييم المستخدمين:* {user_rate}/5" if user_rate and user_rate > 0 else None,
+                    f"⭐ *تقييم المستخدمين:* {user_rate}/5" if user_rate and float(user_rate) > 0 else None,
                     f"🏷️ *الفئة:* {product_cat_name}" if product_cat_name else None,
                 ]
 
