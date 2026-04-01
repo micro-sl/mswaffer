@@ -41,6 +41,7 @@ async def send_direct_message(messageid):
         discount_percentage= str(int(round(int(product_doc.discount_percentage))))
         # 1. معالجة اسم المنتج (أول 30 حرف فقط) مع إضافة نقاط إذا كان أطول
         short_name = (product_name[:47] + '...') if len(product_name) > 50 else product_name
+        user_rate= str(product_doc.vendor_users_rate )
 
         url= str(product_doc.linkurl)
         #https://www.amazon.com/dp/{code}?aff_id={id}
@@ -81,14 +82,18 @@ async def send_direct_message(messageid):
 
         # 2. تجهيز نص الوصف (Caption) بتنسيق Markdown متناسق
         # استخدمنا الرموز التعبيرية (Emojis) لتحسين الشكل البصري
-        caption_text = (
-            f"📦 *{short_name}*\n"
-            #f"-----------------------\n"
-            f"💰 *السعر:* {formatted_price_before} {currency} \n"
-            f"📉 *الخصم:* {discount_percentage}% \n"
-            f"🔥 *السعر بعد الخصم:* {formatted_price_after} {currency} \n"
-            f" * الفئة :* {product_cat_name}  \n"
-        )        
+# بنجهز السطور في قائمة، وبنضيف السطر فقط لو المتغير فيه قيمة
+        lines = [
+                    f"📦 *{short_name}*",
+                    f"💰 *السعر:* {formatted_price_before} {currency}" if formatted_price_before else None,
+                    f"📉 *الخصم:* {discount_percentage}%" if discount_percentage else None,
+                    f"🔥 *السعر بعد الخصم:* {formatted_price_after} {currency}" if formatted_price_after else None,
+                    f"⭐ *تقييم المستخدمين:* {user_rate}/5" if user_rate and user_rate > 0 else None,
+                    f"🏷️ *الفئة:* {product_cat_name}" if product_cat_name else None,
+                ]
+
+        # هنا بندمج السطور اللي مش (None) وبنفصل بينهم بسطر جديد
+        caption_text = "\n".join(filter(None, lines))     
 
 
     # إنشاء كائن البوت
