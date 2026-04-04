@@ -44,42 +44,36 @@ async def send_direct_message(messageid):
         # 1. معالجة اسم المنتج (أول 30 حرف فقط) مع إضافة نقاط إذا كان أطول
         short_name = (product_name[:47] + '...') if len(product_name) > 50 else product_name
         user_rate= str(product_doc.vendor_users_rate )
+        print ("product_doc.vendor_id" , product_doc.vendor_id)
 
-        url= str(product_doc.linkurl)
-        #https://www.amazon.com/dp/{code}?aff_id={id}
-        context = {
-                    "asin": product_doc.asin,  # استبدال {code} بـ ASIN
-                    "model_name": product_doc.model_name,           # استبدال {id} بـ ID المنتج في نظامك
-                    "vendor_id": product_doc.vendor_id,           # استبدال {id} بـ ID المنتج في نظامك
-                    "product_short_name": product_doc.product_short_name,
-                    "product_barcode": product_doc.product_barcode # مثال لإضافة أي حقل آخر
-                        }
+        url = str(product_doc.linkurl)  # القيمة الافتراضية
+         #https://www.amazon.com/dp/{code}?aff_id={id}
+         
         if product_vendor.product_base_url:
             import re
-            # هذه الخطوة تجعل الكود ديناميكي تماماً
+            # 1. استخراج كل الـ placeholders الموجودة في الرابط القاعدي
             placeholders = re.findall(r'{(.*?)}', product_vendor.product_base_url)
             
-            # 3. تجهيز القاموس بالقيم الموجودة فقط
-            context = {}
             product_data = product_doc.as_dict()
-            no_of_tags = 0
-            
+            temp_url = product_vendor.product_base_url
+            no_of_tags_replaced = 0
+
             for tag in placeholders:
-                # التأكد أن الحقل موجود في الـ DocType وله قيمة
-                if tag in product_data and product_data.get(tag):
-                    context[tag] = product_data.get(tag)
-                    no_of_tags += 1
-                    url = product_vendor.product_base_url.format(**context)
+                # التأكد أن الحقل موجود في البيانات وله قيمة
+                tag_value = product_data.get(tag)
+                
+                if tag_value:
+                    # استبدال التاج بالقيم الحقيقية واحدة بواحدة
+                    temp_url = temp_url.replace(f"{{{tag}}}", str(tag_value))
+                    no_of_tags_replaced += 1
                 else:
-                    url= str(product_doc.linkurl)
-                    # إذا كان الحقل مفقوداً أو فارغاً، يمكنك إما وضع قيمة افتراضية 
-                    # أو إيقاف العملية وإظهار رسالة خطأ
-                    print(f"تنبيه: الحقل '{tag}' المستخدم في الرابط فارغ في منتج {product_doc.name}")
-            
-            if no_of_tags>0:
-                url = product_vendor.product_base_url.format(**context)
+                    print(f"تنبيه: الحقل '{tag}' فارغ في المنتج {product_doc.name}")
+
+            # إذا تم استبدال تاج واحد على الأقل، نعتمد الرابط الجديد
+            if no_of_tags_replaced > 0:
+                url = temp_url
             else:
-                url= str(product_doc.linkurl)   
+                url = str(product_doc.linkurl)
             
 
 
@@ -96,7 +90,13 @@ async def send_direct_message(messageid):
                 ]
 
         # هنا بندمج السطور اللي مش (None) وبنفصل بينهم بسطر جديد
-        caption_text = "\n".join(filter(None, lines))     
+        caption_text = "\n".join(filter(None, lines)) 
+        print ("caption_text" , caption_text)
+        print ("photo" , photo)
+        print ("url" , url)
+
+        
+
 
 
     # إنشاء كائن البوت
