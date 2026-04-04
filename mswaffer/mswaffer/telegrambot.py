@@ -32,7 +32,9 @@ async def send_direct_message(messageid):
         product_cat_name= str(product_cat.category_name)
         
         photo= str(product_doc.full_image_url )
-        product_name= str(product_doc.product_name )
+        product_name= str(product_doc.product_description )
+        if product_name == "" :
+            product_name= str(product_doc.product_name )
         product_price= str(product_doc.original_price )
         current_price= str(product_doc.current_price )
         currency= str(product_doc.currency )
@@ -49,6 +51,7 @@ async def send_direct_message(messageid):
                     "asin": product_doc.asin,  # استبدال {code} بـ ASIN
                     "model_name": product_doc.model_name,           # استبدال {id} بـ ID المنتج في نظامك
                     "vendor_id": product_doc.vendor_id,           # استبدال {id} بـ ID المنتج في نظامك
+                    "product_short_name": product_doc.product_short_name,
                     "product_barcode": product_doc.product_barcode # مثال لإضافة أي حقل آخر
                         }
         if product_vendor.product_base_url:
@@ -88,7 +91,7 @@ async def send_direct_message(messageid):
                     f"💰 *السعر:* {formatted_price_before} {currency}" if formatted_price_before else None,
                     f"📉 *الخصم:* {discount_percentage}%" if discount_percentage else None,
                     f"🔥 *السعر بعد الخصم:* {formatted_price_after} {currency}" if formatted_price_after else None,
-                    f"⭐ *تقييم المستخدمين:* {user_rate}/5" if user_rate and float(user_rate) > 0 else None,
+                    f"⭐ * تقييم المستخدمين:* {user_rate}/5" if user_rate and float(user_rate) > 0 else None,
                     f"🏷️ *الفئة:* {product_cat_name}" if product_cat_name else None,
                 ]
 

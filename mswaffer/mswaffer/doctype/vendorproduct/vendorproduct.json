@@ -7,6 +7,7 @@
  "field_order": [
   "vendorid",
   "product_name",
+  "product_short_name",
   "product_description",
   "vendor_category",
   "vendor_id",
@@ -86,13 +87,13 @@
   {
    "fieldname": "currency",
    "fieldtype": "Link",
-   "in_list_view": 1,
    "label": "Currency",
    "options": "Currency"
   },
   {
    "fieldname": "asin",
    "fieldtype": "Data",
+   "in_standard_filter": 1,
    "label": "ASIN"
   },
   {
@@ -165,18 +166,24 @@
   {
    "fieldname": "vendor_id",
    "fieldtype": "Data",
+   "in_standard_filter": 1,
    "label": "Vendor ID"
   },
   {
    "fieldname": "vendor_users_rate",
    "fieldtype": "Float",
    "label": "Vendor Users Rate"
+  },
+  {
+   "fieldname": "product_short_name",
+   "fieldtype": "Data",
+   "label": "Product Short Name"
   }
  ],
  "image_field": "main_product_image",
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-04-01 19:12:50.011346",
+ "modified": "2026-04-04 16:23:26.508455",
  "modified_by": "Administrator",
  "module": "Mswaffer",
  "name": "VendorProduct",
